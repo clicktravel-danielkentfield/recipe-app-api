@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 
-class AdminSiteTest(TestCase):
+class AdminSiteTests(TestCase):
 
     def setUp(self):
         self.client = Client()
@@ -15,7 +15,7 @@ class AdminSiteTest(TestCase):
         self.user = get_user_model().objects.create_user(
             email='test@gmail.com',
             password='23456789',
-            name='Test name'
+            name='Test name',
         )
 
     def test_users_listed(self):
