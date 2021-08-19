@@ -11,6 +11,7 @@ TOKEN_URL = reverse('user:token')
 
 
 def create_user(**params):
+    """Helper function to create new user"""
     return get_user_model().objects.create_user(**params)
 
 
@@ -39,6 +40,7 @@ class PublicUserApiTests(TestCase):
         payload = {
             'email': 'test@gmail.com',
             'password': '25678',
+            'name': 'Test',
         }
         create_user(**payload)
         res = self.client.post(CREATE_USER_URL, payload)
@@ -49,7 +51,8 @@ class PublicUserApiTests(TestCase):
         """Test that the password must be more than 5 characters"""
         payload = {
             'email': 'test@gmail.com',
-            'password': '25678',
+            'password': '256',
+            'name': 'Test',
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
